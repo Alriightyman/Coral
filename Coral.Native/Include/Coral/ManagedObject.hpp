@@ -58,7 +58,7 @@ namespace Coral {
 			SetFieldValueRaw(InFieldName, &InValue);
 		}
 
-		template<>
+		template<typename fake>
 		void SetFieldValue(std::string_view InFieldName, std::string InValue) const
 		{
 			String s = String::New(InValue);
@@ -66,7 +66,7 @@ namespace Coral {
 			String::Free(s);
 		}
 
-		template<>
+		//template<typename fake>
 		void SetFieldValue(std::string_view InFieldName, bool InValue) const
 		{
 			Bool32 s = InValue;
@@ -81,23 +81,11 @@ namespace Coral {
 			return result;
 		}
 
-		template<>
-		std::string GetFieldValue(std::string_view InFieldName) const
-		{
-			String result;
-			GetFieldValueRaw(InFieldName, &result);
-			auto s = std::string(result);
-			String::Free(result);
-			return s;
-		}
-
-		template<>
-		bool GetFieldValue(std::string_view InFieldName) const
-		{
-			Bool32 result;
-			GetFieldValueRaw(InFieldName, &result);
-			return result;
-		}
+		// template<>
+		// std::string GetFieldValue<std::string>(std::string_view InFieldName) const;
+		//
+		// template<>
+		// bool GetFieldValue<bool>(std::string_view InFieldName) const;
 
 		template<typename TValue>
 		void SetPropertyValue(std::string_view InPropertyName, TValue InValue) const
@@ -136,6 +124,6 @@ namespace Coral {
 		friend class ManagedAssembly;
 		friend class Type;
 	};
-	
+
 }
 

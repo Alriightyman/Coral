@@ -20,7 +20,7 @@ namespace Coral {
 			return result;
 		}
 
-		template<>
+		template<typename fake>
 		std::string GetFieldValue(std::string_view InFieldName)
 		{
 			String result;
@@ -28,7 +28,7 @@ namespace Coral {
 			return std::string(result);
 		}
 
-		template<>
+		template<typename fake>
 		bool GetFieldValue(std::string_view InFieldName)
 		{
 			Bool32 result;

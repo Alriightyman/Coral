@@ -8,6 +8,24 @@
 
 namespace Coral {
 
+	template<>
+	std::string ManagedObject::GetFieldValue<std::string>(std::string_view InFieldName) const
+	{
+		String result;
+		GetFieldValueRaw(InFieldName, &result);
+		auto s = std::string(result);
+		String::Free(result);
+		return s;
+	}
+
+	template<>
+	bool ManagedObject::GetFieldValue<bool>(std::string_view InFieldName) const
+	{
+		Bool32 result;
+		GetFieldValueRaw(InFieldName, &result);
+		return result;
+	}
+
 	void ManagedObject::InvokeMethodInternal(std::string_view InMethodName, const void** InParameters, const ManagedType* InParameterTypes, size_t InLength) const
 	{
 		// NOTE(Peter): If you get an exception in this function it's most likely because you're using a Native only debugger type in Visual Studio

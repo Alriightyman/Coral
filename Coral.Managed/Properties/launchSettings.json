@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "profiles": {
+    "Coral.Managed": {
+		"commandName": "Executable",
+		"executablePath": "/home/alriightyman/dev/AlriightyEngine/bin/Debug/AlriightyEditor/AlriightyEditor",
+		"workingDirectory": "/home/alriightyman/dev/AlriightyEngine/Editor",
+      "environmentVariables": {
+        
+      }
+    }
+  }
+}

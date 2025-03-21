@@ -52,13 +52,13 @@ namespace Coral {
 	{
 		CORAL_VERIFY(!m_Initialized);
 
+		// Setup settings
+		m_Settings = std::move(InSettings);
+
 		if (!LoadHostFXR())
 		{
 			return CoralInitStatus::DotNetNotFound;
 		}
-
-		// Setup settings
-		m_Settings = std::move(InSettings);
 
 		if (!m_Settings.MessageCallback)
 			m_Settings.MessageCallback = DefaultMessageCallback;
@@ -126,7 +126,7 @@ namespace Coral {
 	}
 #endif
 
-	std::filesystem::path GetHostFXRPath(std::filesystem::path& hostFxrPath)
+	std::filesystem::path GetHostFXRPath(std::filesystem::path hostFxrPath)
 	{
 #if defined(CORAL_WINDOWS)
 		std::filesystem::path basePath = "";
@@ -150,9 +150,10 @@ namespace Coral {
 #elif defined(CORAL_LINUX)
 		auto searchPaths = std::array
 		{
-//			std::filesystem::path("/usr/lib/dotnet/host/fxr/"),
-//			std::filesystem::path("/usr/share/dotnet/host/fxr/"),
-			hostFxrPath
+			std::filesystem::path("/usr/lib/dotnet/host/fxr/"),
+			std::filesystem::path("/usr/share/dotnet/host/fxr/"),
+			std::filesystem::path("/home/alriightyman/.dotnet/host/fxr/"),
+			//hostFxrPath
 		};
 #endif
 
