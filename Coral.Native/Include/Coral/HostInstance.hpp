@@ -17,7 +17,7 @@ namespace Coral {
 		/// The file path to Coral.runtimeconfig.json (e.g C:\Dev\MyProject\ThirdParty\Coral)
 		/// </summary>
 		std::string CoralDirectory;
-
+		std::filesystem::path HostFXRDirectory;
 		MessageCallbackFn MessageCallback = nullptr;
 		MessageLevel MessageFilter = MessageLevel::All;
 
@@ -61,6 +61,7 @@ namespace Coral {
 	private:
 		HostSettings m_Settings;
 		std::filesystem::path m_CoralManagedAssemblyPath;
+		std::filesystem::path m_HostFXRDirectory;
 		void* m_HostFXRContext = nullptr;
 		bool m_Initialized = false;
 

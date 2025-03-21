@@ -1,11 +1,8 @@
-project(Coral
-        LANGUAGES CXX)
+project(Coral LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS ON)
-
-add_subdirectory(Coral.Native)
 
 add_library(Coral STATIC
         NetCore/coreclr_delegates.h
@@ -48,19 +45,15 @@ add_library(Coral STATIC
         Coral.Native/Include/Coral/MessageLevel.hpp
         Coral.Native/Include/Coral/Core.hpp
 )
-#
-#source_group(TREE ${CMAKE_CURRENT_SOURCE_DIR}
-#        FILES ${SOURCES}
-#)
 
 set_target_properties(Coral PROPERTIES LINKER_LANGUAGE CXX)
 
 target_precompile_headers(Coral PUBLIC Coral.Native/Source/CoralPCH.hpp)
 
 target_include_directories(Coral PRIVATE
-    NetCore
-    Coral.Native/Source
-    Coral.Native/Include/Coral
+        NetCore
+        Coral.Native/Source
+        Coral.Native/Include/Coral
 )
 
 if(WIN32)
@@ -77,4 +70,6 @@ else ()
     message("No MacOS support at this time")
 endif ()
 
-target_link_libraries(Coral)
+target_link_libraries(Coral
+        stdc++fs
+)

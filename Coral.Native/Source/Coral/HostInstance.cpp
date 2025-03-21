@@ -142,7 +142,7 @@ namespace Coral {
 	}
 #endif
 
-	static std::filesystem::path GetHostFXRPath()
+	static std::filesystem::path GetHostFXRPath(std::filesystem::path& hostFxrPath)
 	{
 #ifdef CORAL_WINDOWS
 		std::filesystem::path basePath = "";
@@ -165,6 +165,7 @@ namespace Coral {
 #else
 		auto searchPaths = std::array
 		{
+			hostFxrPath,
 			std::filesystem::path("/usr/local/lib/dotnet/host/fxr/"),
 			std::filesystem::path("/usr/local/share/dotnet/host/fxr/"),
 
@@ -201,7 +202,7 @@ namespace Coral {
 	bool HostInstance::LoadHostFXR() const
 	{
 		// Retrieve the file path to the CoreCLR library
-		auto hostfxrPath = GetHostFXRPath();
+		auto hostfxrPath = GetHostFXRPath(m_Settings.HostFXRDirectory);
 
 		if (hostfxrPath.empty())
 		{
