@@ -142,7 +142,7 @@ namespace Coral {
 	}
 #endif
 
-	static std::filesystem::path GetHostFXRPath(std::filesystem::path& hostFxrPath)
+	static std::filesystem::path GetHostFXRPath(const std::filesystem::path& hostFxrPath)
 	{
 #ifdef CORAL_WINDOWS
 		std::filesystem::path basePath = "";

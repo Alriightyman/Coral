@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <cwchar>
+#include <bit>
 
 #define CORAL_DEPRECATE_MSG_P(s, x) s ". See `" x "`"
 
