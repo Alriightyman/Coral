@@ -57,13 +57,13 @@ namespace Coral {
 	{
 		CORAL_VERIFY(!m_Initialized);
 
+		// Setup settings
+		m_Settings = std::move(InSettings);
+
 		if (!LoadHostFXR())
 		{
 			return CoralInitStatus::DotNetNotFound;
 		}
-
-		// Setup settings
-		m_Settings = std::move(InSettings);
 
 		if (!m_Settings.MessageCallback)
 			m_Settings.MessageCallback = DefaultMessageCallback;
